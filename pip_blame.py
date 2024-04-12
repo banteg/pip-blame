@@ -7,6 +7,9 @@ from rich import print
 
 
 def main():
+    if len(sys.argv) < 2:
+        print("usage: pip-blame NAME")
+        return
     name = sys.argv[1]
     resp = requests.get(f"https://pypi.org/pypi/{name}/json")
     version = resp.json()["info"]["version"]
