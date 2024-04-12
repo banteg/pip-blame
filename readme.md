@@ -35,4 +35,4 @@ people who rely on your work as a building block will be thankful as they spend 
 
 **overrides as a last resort.**
 
-if you struggle with a transitive dependency, use [depencency overrides](https://github.com/astral-sh/uv?tab=readme-ov-file#dependency-overrides) feature of `uv`. it allows you to lie to the resolver and install and version you know that works.
+if you struggle with a transitive dependency, use [depencency overrides](https://github.com/astral-sh/uv?tab=readme-ov-file#dependency-overrides) feature of `uv`. it allows you to lie to the resolver and install the version you know that works.
