@@ -7,6 +7,7 @@ name = "pip-blame"
 version = "0.1.0"
 description = "finds packages that prevent upgrading a transitive dependency"
 authors = [{name = "banteg"}]
+requires-python = ">=3.8"
 dependencies = [
     "packaging >=24",
     "requests >=2.31",
