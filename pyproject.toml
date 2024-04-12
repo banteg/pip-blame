@@ -1,18 +1,19 @@
 [build-system]
-requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.2,<4"]
 
 [project]
-name = "pip-blame"
-version = "0.1.0"
-description = "finds packages that prevent upgrading a transitive dependency"
 authors = [{name = "banteg"}]
-requires-python = ">=3.8"
 dependencies = [
-    "packaging >=24",
-    "requests >=2.31",
-    "rich >=13.7.1",
+  "packaging >=24",
+  "requests >=2.31",
+  "rich >=13.7.1",
 ]
+description = "finds packages that prevent upgrading a transitive dependency"
+name = "pip-blame"
+readme = 'readme.md'
+requires-python = ">=3.8"
+version = "0.1.0"
 
 [tool.flit.module]
 name = "pip_blame"
