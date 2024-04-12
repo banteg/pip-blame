@@ -1,0 +1,23 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "pip-blame"
+version = "0.1.0"
+description = "finds packages that prevent upgrading a transitive dependency"
+authors = [{name = "banteg"}]
+dependencies = [
+    "packaging >=24",
+    "requests >=2.31",
+    "rich >=13.7.1",
+]
+
+[tool.flit.module]
+name = "pip_blame"
+
+[project.urls]
+Home = "https://github.com/banteg/pip-blame"
+
+[project.scripts]
+pip-blame = "pip_blame:main"
