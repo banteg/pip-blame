@@ -2,8 +2,7 @@
 
 *finds packages that prevent upgrading a transitive dependency*
 
-<img width="500" alt="pip-blame" src="https://github.com/banteg/pip-blame/assets/4562643/e91ca9cf-3a10-42f9-aee7-cec78ff0da74">
-
+<img width="369" alt="pip-blame" src="https://github.com/banteg/pip-blame/assets/4562643/4981ca69-4952-4583-97c3-07dd7e93bed5">
 
 ## install
 
