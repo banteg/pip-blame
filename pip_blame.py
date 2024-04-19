@@ -73,7 +73,7 @@ def main():
                 print(
                     f"[green]{dist.name}[/] latest={latest_dist.version} [yellow]* upgrade to fix"
                 )
-                solution.append(f"pip install {dist.name}>={latest_dist.version}")
+                solution.append(f'pip install "{dist.name}>={latest_dist.version}"')
                 for spec in latest_contains:
                     print(f"  {spec}")
                 print()
