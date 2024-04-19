@@ -1,10 +1,12 @@
 from importlib.metadata import Distribution, distributions, distribution
 import sys
+from collections import Counter
 
 import requests
 from packaging.requirements import Requirement
 from rich import print
 from dataclasses import dataclass
+import re
 
 
 @dataclass
@@ -36,6 +38,23 @@ class Metadata:
         return {req: req.specifier.contains(version) for req in self.filter(dependency)}
 
 
+def extract_repo(dist):
+    urls = {"Home-page": dist.metadata.get("Home-page")}
+
+    project_urls = dist.metadata.get_all("Project-URL") or []
+    project_urls = dict(x.split(", ", maxsplit=1) for x in project_urls)
+    urls.update(project_urls)
+
+    urls = [
+        re.search(r"https://github.com/[^/]+/[^/]+", url)
+        for url in urls.values()
+        if url
+    ]
+    urls = Counter(url.group(0) for url in urls if url)
+    if urls:
+        return urls.most_common(1)[0][0]
+
+
 def main():
     solution = {}
     if len(sys.argv) < 2:
@@ -63,15 +82,15 @@ def main():
             latest_contains = latest_dist.contains(name, latest.version)
             # implicit version comparison
             if False in latest_contains.values():
-                homepage = dist.metadata.get("Home-page", None)
-                if homepage.startswith("https://github.com"):
-                    homepage += "/issues/new"
+                repo = extract_repo(dist)
+                if repo:
+                    repo += "/issues/new"
                 print(
                     "[yellow]not fixed in the latest version, reach out to maintainers"
                 )
-                print(f"{homepage}\n")
+                print(f"{repo}\n")
                 solution[dist.name] = (
-                    homepage or f"reach out to [yellow]{dist.name}[/] devs"
+                    repo or f"reach out to [yellow]{dist.name}[/] devs"
                 )
             else:
                 print(

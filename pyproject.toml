@@ -13,13 +13,14 @@ description = "finds packages that prevent upgrading a transitive dependency"
 name = "pip-blame"
 readme = 'readme.md'
 requires-python = ">=3.8"
-version = "0.2.3"
+version = "0.2.4"
+home-page = "https://github.com/banteg/pip-blame"
 
 [tool.flit.module]
 name = "pip_blame"
 
 [project.urls]
-Home = "https://github.com/banteg/pip-blame"
+Source = "https://github.com/banteg/pip-blame"
 
 [project.scripts]
 pip-blame = "pip_blame:main"
