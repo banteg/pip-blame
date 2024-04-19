@@ -17,7 +17,9 @@ class Metadata:
         metadata = requests.get(f"https://pypi.org/pypi/{name}/json").json()
         return cls(
             version=metadata["info"]["version"],
-            requires=[Requirement(req) for req in metadata["info"]["requires_dist"]],
+            requires=[
+                Requirement(req) for req in metadata["info"]["requires_dist"] or []
+            ],
         )
 
     @classmethod
