@@ -37,7 +37,7 @@ class Metadata:
 
 
 def main():
-    solution = []
+    solution = {}
     if len(sys.argv) < 2:
         print("usage: pip-blame NAME")
         return
@@ -63,27 +63,31 @@ def main():
             latest_contains = latest_dist.contains(name, latest.version)
             # implicit version comparison
             if False in latest_contains.values():
-                homepage = dist.metadata.get("Home-page", "")
+                homepage = dist.metadata.get("Home-page", None)
                 if homepage.startswith("https://github.com"):
                     homepage += "/issues/new"
                 print(
                     "[yellow]not fixed in the latest version, reach out to maintainers"
                 )
                 print(f"{homepage}\n")
-                solution.append(homepage)
+                solution[dist.name] = (
+                    homepage or f"reach out to [yellow]{dist.name}[/] devs"
+                )
             else:
                 print(
-                    f"[green]{dist.name}[/] latest={latest_dist.version} [yellow]* upgrade to fix"
+                    f"[green]{dist.name}[/] latest={latest_dist.version} [green]fixed in latest"
                 )
-                solution.append(f'pip install "{dist.name}>={latest_dist.version}"')
+                solution[dist.name] = (
+                    f'pip install "{dist.name}>={latest_dist.version}"'
+                )
                 for spec in latest_contains:
                     print(f"  {spec}")
                 print()
 
     if solution:
-        print("[yellow]suggested solution:")
-        for sol in solution:
-            print(sol)
+        print("[underline yellow]suggested solution:")
+        for dist, sol in solution.items():
+            print(f"[red]{dist}[/] {sol}")
 
 
 if __name__ == "__main__":
