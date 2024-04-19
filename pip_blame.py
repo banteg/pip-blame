@@ -4,7 +4,6 @@ import sys
 import requests
 from packaging.requirements import Requirement
 from rich import print
-from rich.rule import Rule
 from dataclasses import dataclass
 
 
@@ -36,7 +35,6 @@ class Metadata:
 
 
 def main():
-    print(Rule())
     solution = []
     if len(sys.argv) < 2:
         print("usage: pip-blame NAME")
