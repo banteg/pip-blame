@@ -13,7 +13,7 @@ description = "finds packages that prevent upgrading a transitive dependency"
 name = "pip-blame"
 readme = 'readme.md'
 requires-python = ">=3.8"
-version = "0.1.0"
+version = "0.2.0"
 
 [tool.flit.module]
 name = "pip_blame"
